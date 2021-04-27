@@ -21,6 +21,8 @@ public class AddCustomerSteps {
 	@Given("user launches telecom application")
 	public void user_launches_telecom_application() {
 	    
+		System.out.println("Background");
+		
 		WebDriverManager.chromedriver().setup();
 	    driver = new ChromeDriver();
 		driver.get("http://www.demo.guru99.com/telecom/");
@@ -37,6 +39,8 @@ public class AddCustomerSteps {
 
 	@When("user need to fill up the fields")
 	public void user_need_to_fill_up_the_fields() {
+		
+		System.out.println("Scenario");
 		
 		driver.findElement(By.xpath("(//label[@for='done'])[1]")).click();
 		driver.findElement(By.id("fname")).sendKeys("karthi");
