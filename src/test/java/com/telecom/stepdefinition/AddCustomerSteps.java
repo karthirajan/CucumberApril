@@ -8,32 +8,24 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.telecom.objectrepository.AddCustomerPage;
+import com.telecom.resources.Commonaction;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class AddCustomerSteps {
+public class AddCustomerSteps extends Commonaction{
 	
-	public static WebDriver driver;
-	
-	@Given("user launches telecom application")
-	public void user_launches_telecom_application() {
-	    
-		System.out.println("Background");
-		
-		WebDriverManager.chromedriver().setup();
-	    driver = new ChromeDriver();
-		driver.get("http://www.demo.guru99.com/telecom/");
-		driver.manage().window().maximize();
-		
-	}
+	Commonaction ca = new Commonaction();
+	AddCustomerPage  ac = new AddCustomerPage();
 
 	@Given("user click on add customer button")
 	public void user_click_on_add_customer_button() {
 		
-		driver.findElement(By.xpath("(//a[text()='Add Customer'])[1]")).click();
+		ca.button(ac.getAddCustomerBtn());
 	    
 	}
 
@@ -42,26 +34,26 @@ public class AddCustomerSteps {
 		
 		System.out.println("Scenario");
 		
-		driver.findElement(By.xpath("(//label[@for='done'])[1]")).click();
-		driver.findElement(By.id("fname")).sendKeys("karthi");
-		driver.findElement(By.id("lname")).sendKeys("rajan");
-		driver.findElement(By.id("email")).sendKeys("karthi@gmail.com");
-		driver.findElement(By.name("addr")).sendKeys("tanjore");
-		driver.findElement(By.id("telephoneno")).sendKeys("534432432432");
+		ca.button(ac.getDoneBtn());
+		ca.insertText(ac.getFirstName(), "karthi");
+		ca.insertText(ac.getLastName(), "rajan");
+		ca.insertText(ac.getEmail(), "rajan@gmail.com");
+		ca.insertText(ac.getAddress(), "tanjore");
+		ca.insertText(ac.getPhno(), "464634653");
 	    
 	}
 
 	@When("user click on submit button")
 	public void user_click_on_submit_button() {
 		
-		driver.findElement(By.xpath("(//input[@type='submit'])[1]")).click();
+		ca.button(ac.getSubmitBtn());
 	    
 	}
 
 	@Then("user verify customer id is generated")
 	public void user_verify_customer_id_is_generated() {
 		
-		Assert.assertTrue(driver.findElement(By.xpath("(//td[@align='center'])[2]")).isDisplayed());
+		Assert.assertTrue(ac.getCustomerID().isDisplayed());
 	    
 	}
 	
@@ -70,8 +62,8 @@ public class AddCustomerSteps {
    public void user_need_to_fill_up_the_fields_by_one_dim_list(DataTable dataTable) {
 	   
 	   List<String> datas = dataTable.asList(String.class);
-	   driver.findElement(By.xpath("(//label[@for='done'])[1]")).click();
-		driver.findElement(By.id("fname")).sendKeys(datas.get(0));
+	    ac.button(ac.getDoneBtn());
+		ca.insertText(ac.getFirstName(), datas.get(0));
 		driver.findElement(By.id("lname")).sendKeys(datas.get(1));
 		driver.findElement(By.id("email")).sendKeys(datas.get(2));
 		driver.findElement(By.name("addr")).sendKeys(datas.get(3));

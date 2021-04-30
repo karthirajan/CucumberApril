@@ -5,26 +5,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.telecom.resources.Commonaction;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class AddTariffSteps {
+public class AddTariffSteps extends Commonaction{
 	
-	public static WebDriver driver;
 	
-	@Given("User launch telecom application")
-	public void user_launch_telecom_application() {
-		
-		System.out.println("Scenario");
-		
-		WebDriverManager.chromedriver().setup();
-	    driver = new ChromeDriver();
-		driver.get("http://www.demo.guru99.com/telecom/");
-		driver.manage().window().maximize();
-	    
-	}
 
 	@Given("user click on add tariff button")
 	public void user_click_on_add_tariff_button() {

@@ -2,7 +2,7 @@
 Feature: Add tariff Validation
 
   Scenario Outline: Add tariff scenario validation
-    Given User launch telecom application
+    #Given User launch telecom application
     And user click on add tariff button
     When user enters plan details "<MR>","<FLM>","<FIM>","<SMS>","<LPMC>","<IPMC>","<SMSC>"
     And user click on submit buttons

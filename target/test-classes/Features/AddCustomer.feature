@@ -1,10 +1,12 @@
 #Author: your.karthi@your.domain.com
+@Regression @karthi @smoke
 Feature: Add Customer
 
 Background:
-    Given user launches telecom application
+    #Given user launches telecom application
     And user click on add customer button
 
+@karthiNew
   Scenario: Validate add customer module
     When user need to fill up the fields
     And user click on submit button
