@@ -1,7 +1,9 @@
 package com.telecom.objectrepository;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
 import com.telecom.resources.Commonaction;
@@ -22,6 +24,18 @@ public class AddCustomerPage extends Commonaction{
 	
 	@FindBy(id="fname")
 	private WebElement firstName;
+	
+	@FindBys( {
+		   @FindBy(id = "fname"),
+		   @FindBy(name = "fname")
+		} )
+	private WebElement uniqueFirstname;
+	
+	@FindAll( {
+		   @FindBy(id = "fname"),
+		   @FindBy(name = "fname")
+		} )
+	private WebElement eitherFirstname;
 	
 	@FindBy(id="lname")
 	private WebElement lastName;
